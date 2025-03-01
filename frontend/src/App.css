@@ -6,44 +6,54 @@ body {
 
 .App {
   padding: 2vw;
-  width: 96vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: #edf2fb;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  background-color: #212529;
+  justify-content: center;
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 20px;
 }
 
 .editor-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 80vh;
-  gap: 20px; 
+  flex: 1;
 }
 
 textarea {
-  width: 50%;
   height: 100%;
   font-size: 16px;
+  width: 50%;
   padding: 15px;
-  border: 1px solid #ddd;
   box-sizing: border-box;
   resize: none;
+  display: flex;
+  flex: 1;
+  border: none;
+  background-color: #343a40;
 }
 
 .preview {
   width: 50%;
   height: 100%;
   padding: 15px;
-  border: 1px solid #ddd;
-  background-color: #0f0f0f;
   overflow-y: auto;
   box-sizing: border-box;
+  color: #000;
+  background-color: #f2f2f2;
 }
 
-textarea, .preview {
-  
+textarea,
+.preview {
   min-width: 45%;
 }
 
@@ -52,9 +62,10 @@ textarea, .preview {
     flex-direction: column;
   }
 
-  textarea, .preview {
+  textarea,
+  .preview {
     width: 100%;
-    height: 40vh; 
-    margin-bottom: 20px; 
+    height: 40vh;
+    margin-bottom: 20px;
   }
 }

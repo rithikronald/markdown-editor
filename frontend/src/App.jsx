@@ -26,7 +26,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Markdown Editor </h1>
+      <div className="header">
+        <h2 className="header-text">Real-Time Markdown Editor</h2>
+      </div>
       <div className="editor-container">
         <textarea
           value={markdown}
