@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { io } from "socket.io-client";
 import "./App.css";
 
@@ -35,7 +38,31 @@ function App() {
           onChange={handleMarkdownChange}
           placeholder="Type your Markdown here..."
         />
-        <div className="preview" dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="preview">
+          <ReactMarkdown
+            components={{
+              code({ className, children, ...rest }) {
+                const match = /language-(\w+)/.exec(className || "");
+                return match ? (
+                  <SyntaxHighlighter
+                    PreTag="div"
+                    language={match[1]}
+                    style={dracula}
+                    {...rest}
+                  >
+                    {children}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code {...rest} className={className}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          >
+            {markdown}
+          </ReactMarkdown>
+        </div>
       </div>
     </div>
   );

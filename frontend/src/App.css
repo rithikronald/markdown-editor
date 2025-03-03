@@ -27,6 +27,7 @@ h1 {
 .editor-container {
   display: flex;
   flex: 1;
+  overflow: auto;
 }
 
 textarea {
@@ -69,3 +70,4 @@ textarea,
     margin-bottom: 20px;
   }
 }
+
