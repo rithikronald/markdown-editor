@@ -1,11 +1,15 @@
+import Prism from "prismjs";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-markup";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-sql";
+import "prismjs/themes/prism.css";
 import React, { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { io } from "socket.io-client";
 import "./App.css";
 
-// socket connection for real-time update
 const socket = io("http://localhost:3000");
 
 function App() {
@@ -27,6 +31,10 @@ function App() {
     return () => socket.off("html");
   }, []);
 
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [html]);
+
   return (
     <div className="App">
       <div className="header">
@@ -38,31 +46,7 @@ function App() {
           onChange={handleMarkdownChange}
           placeholder="Type your Markdown here..."
         />
-        <div className="preview">
-          <ReactMarkdown
-            components={{
-              code({ className, children, ...rest }) {
-                const match = /language-(\w+)/.exec(className || "");
-                return match ? (
-                  <SyntaxHighlighter
-                    PreTag="div"
-                    language={match[1]}
-                    style={dracula}
-                    {...rest}
-                  >
-                    {children}
-                  </SyntaxHighlighter>
-                ) : (
-                  <code {...rest} className={className}>
-                    {children}
-                  </code>
-                );
-              },
-            }}
-          >
-            {markdown}
-          </ReactMarkdown>
-        </div>
+        <div className="preview" dangerouslySetInnerHTML={{ __html: html }} />
       </div>
     </div>
   );

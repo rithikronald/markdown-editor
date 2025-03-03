@@ -72,16 +72,34 @@ npm start     # If using Create React App
 
 You can try the following Markdown examples in the editor:
 
-```markdown
+````markdown
 # Heading 1
+
 ## Heading 2
+
 ### Heading 3
 
 **Bold Text**
+_Italic Text_
 
-*Italic Text*
+- Item 1
+- Item 2
+  - Nested Item
 
-- List Item 1
-- List Item 2
+1. First
+2. Second
+3. Third
 
-   m
+[Google](https://www.google.com)
+
+![Image](https://via.placeholder.com/150)
+
+---
+
+```javascript
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+greet("World");
+```
+````
